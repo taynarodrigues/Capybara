@@ -14,5 +14,14 @@
         
     end
 
+    it 'deve exibir o salario do vin diesel' do
+        diesel = find('table tbody tr', text: '@vindiesel') 
+        expect(diesel).to have_content '10.000.000'
+    end
+
+    it 'deve exibir o filme velozes' do 
+        diesel = find('table tbody tr', text: '@vindiesel')
+        expect(diesel).to have_content 'Velozes e Furiosos'
+    end
  
  end

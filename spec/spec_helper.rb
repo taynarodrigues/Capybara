@@ -16,13 +16,18 @@ RSpec.configure do |config|
 
   # redimensionar a janela numa configuração padrão para todos os cenários
   config.before(:example) do
-      page.current_window.resize_to(1280, 800)
+      page.current_window.resize_to(1920, 1080)
+  end 
+
+  config.after(:example) do |e|
+    nome = e.description.gsub(/[^A-Za-z0-9 ]/, '').tr(' ', '_')
+    page.save_screenshot('log/' + nome + '.png')  # if e.exception
   end 
 
 end
 #driver do capybara
 Capybara.configure do |config|
-  config.default_driver = :selenium_chrome
+  config.default_driver = :selenium_chrome_headless
   config.default_max_wait_time = 5 #adeus sleep 
   config.app_host = 'https://training-wheels-protocol.herokuapp.com'
 end
